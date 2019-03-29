@@ -4,9 +4,10 @@
 
 import asyncio
 import random
+import socket
 
 async def handler(_reader, writer):
-    writer.write(b'220 \r\n') #smtp greeting https://tools.ietf.org/html/rfc5321#section-4.2
+    writer.write(b'220 %x\r\n' % (socket.gethostname())) #smtp greeting https://tools.ietf.org/html/rfc5321#section-4.2
     try:
         while True:
             await asyncio.sleep(5)
